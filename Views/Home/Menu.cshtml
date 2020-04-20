@@ -1,0 +1,40 @@
+﻿@model FoodTruck
+@{
+    ViewData["Title"] = "Menu";
+}
+
+    <div class="menu-container">
+        <div class="menu-truck">@Model.Name</div>
+        <div class="menu-title">Menu</div>
+        <div class="menu-location">@Model.Location.Address</div>
+    </div>
+
+    <div class="menu-items">
+        @{
+            if (Model.Menu.Count == 0)
+            {
+                <span>No food items available</span>
+            }
+            else
+            {
+                foreach (FoodItem f in Model.Menu)
+                {
+                    <div class="menu-card">
+                        <div class="card-img">
+                            <img class="card-img-top" src="~/img/apples.jpg" />
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">@f.Name</div>
+                            <div class="card-menu-text">@f.FoodItemDescription</div>
+                            <div class="menu-price">@f.Price.ToString("C2")</div>
+                            <button class="btn-apple justify-content-end">Add to Cart</button>
+
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <div class="btn-action">
+        @Html.ActionLink("Back to Trucks", "Index", "Home", null, new { @class = "btn-apple" })
+    </div>

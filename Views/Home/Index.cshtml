@@ -1,0 +1,26 @@
+﻿@model IEnumerable<FoodTruck>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="title-container text-center">
+    <h1 class="main-title">Welcome to The Best Apple Co.</h1>
+    <p class="main-title-text">Select a food truck below to order items.</p>
+</div>
+<div class="card-container">
+    @foreach (FoodTruck t in Model)
+    {
+        <a asp-action="Menu" asp-route-id="@t.FoodTruckID">
+            <div class="card">
+                <div class="card-img">
+                    <img class="card-img-top" src="~/img/food_truck.jpg" />
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">@t.Name</h1>
+                    <span class="card-text">@t.Location.Address</span>
+                </div>
+            </div>
+        </a>
+    }
+</div>
